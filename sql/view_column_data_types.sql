@@ -1,5 +1,3 @@
-USE prd_DW_ODS
-GO
 
 
 SELECT	c.name
