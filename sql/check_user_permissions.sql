@@ -18,16 +18,3 @@ SELECT SUSER_NAME(),USER_NAME()
 
 
 
-
-SELECT		TOP 100
-			*
-FROM		[dbo].[EquipmentInfo_May_2014]
-WHERE		Bottler = 'UNITED'
-			AND [Branch Name] = 'MONTGOMERY'
-
-
-SELECT		TOP 100
-			*
-FROM		[dbo].[EquipmentInfo_June_2014]
-WHERE		Bottler = 'CCBCC'
-			AND [Branch Name] = 'COOKVILLE'
