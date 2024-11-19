@@ -1,11 +1,3 @@
--- RCYCG-DW01 - DEV
---USE tst_DW_ODS;
---GO
-
--- RCYAZ2-DW01 - PROD
-USE prd_DW_ODS;
-GO
-
 ALTER VIEW dbo.vw_Sql_Job_History
 AS
 /* 
