@@ -1,4 +1,3 @@
-USE		prd_DW_ODS
 
 select	schema_name(tab.schema_id) + '.' + tab.name as [table]
 		, col.column_id
