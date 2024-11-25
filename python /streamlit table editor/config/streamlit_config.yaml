@@ -1,0 +1,13 @@
+# MXP_API / config / streamlit_config.yaml
+# ----------------------------------------------------------------------------
+# streamlit_config.yaml
+# streamlit runtime and UI options
+# ----------------------------------------------------------------------------
+---
+selectbox:
+  rows_per_page:
+    OPTIONS:
+      - 10
+      - 20
+      - 50
+      - 100

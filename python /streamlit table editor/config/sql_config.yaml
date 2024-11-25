@@ -1,0 +1,26 @@
+# MXP_API/config/sql_config.yaml
+# ----------------------------------------------------------------------------
+# sql_config.yaml
+# SQL SERVER CONFIGURATION OPTIONS
+# ----------------------------------------------------------------------------
+---
+sql:
+  dev:
+    SERVER_NAME: "DEV-SERVER"
+    DATABASE_NAME: "MY_DATABASE"
+    SQL_DRIVER: >
+      Driver=SQL Server;
+      Server=DEV-SERVER;
+      Database=MY_DATABASE;
+      Trusted_Connection=yes;
+
+  prod:
+    SERVER_NAME: "PROD-SERVER"
+    DATABASE_NAME: "MY_DATABASE"
+    # for LINUX server
+    SQL_DRIVER: >
+      Driver={ODBC Driver 18 for SQL Server};
+      Server=PROD-SERVER.azure.com;
+      Database=MY_DATABASE;
+      Trusted_Connection=yes;
+      TrustServerCertificate=yes;

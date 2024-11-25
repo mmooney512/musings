@@ -1,0 +1,42 @@
+# MXP_API / config / sql_column_config.yaml
+# ----------------------------------------------------------------------------
+# sql_columns_config.yaml
+# SQL SERVER CONFIGURATION OPTIONS
+# ----------------------------------------------------------------------------
+---
+table:
+  countryregion:
+    SCHEMA: person
+    NAME: countryregion
+    PRIMARY_KEY: "ID"
+    COLUMNS:
+    - CountryRegionCode
+    - Name
+    - Airport_Code
+    - City_Id
+  person:
+    SCHEMA: person
+    NAME: person
+    PRIMARY_KEY: "BusinessEntityID"
+    COLUMNS:
+    - PersonType
+    - NameStyle
+    - Title
+    - FirstName
+    - MiddleName
+    - LastName
+    - Suffix
+  location:
+    SCHEMA: production
+    NAME: location
+    PRIMARY_KEY: "LocationID"
+    COLUMNS:
+    - Name
+    - CostRate
+    - Availability
+info:
+  columns:
+    QUERY: info.columns
+  count:
+    QUERY: sys.row_count.sql
+
