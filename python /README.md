@@ -1,20 +1,5 @@
----
-title: "Streamlit Table Editor App"
-date: "2024-11-19"
-categories: 
-  - "streamlit"
-  - "python"
-  - "pandas"
-  - "code"
-tags: 
-  - "streamlit"
-  - "crud"
-  - "tutorial"
-  - "sql"
-  - "python"
-  - "website"
-coverImage: "edit_row_crop_900_400.png"
----
+# Streamlit Table Editor App
+
 
 CRUD (Create, Read, Update, and Delete) it is the cornerstone of working with database applications. Today I will walk through using the [Streamlit](https://streamlit.io/) python framework to build a web based app that you can use to interact with a database. The app will allow you to Read, Update, and Delete tables in your database.
 
