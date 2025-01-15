@@ -1,0 +1,21 @@
+# ----------------------------------------------------------------------------
+# SFTP CONFIGURATION OPTIONS
+# ----------------------------------------------------------------------------
+# sftp connection values
+---
+SERVER:
+  HOSTNAME: 'THESFTP-SERVER'
+  USERNAME: 'myusername'
+  KEY_FILENAME: 'C:\Users\my_name\.ssh\thekey.pem'
+  KNOWN_HOSTS: '/config/known_hosts'
+ 
+FILE:
+  LOCAL_DIRECTORY:  'main/assets/'
+  REMOTE_DIRECTORY: '/home/username/directory/directory/main/assets/'
+ 
+FILE_NAMES:
+  ONE:      'image_one.png'
+  TWO:      'image_two.png'
+  THREE:    'image_three.png'
+ 
+WAIT_PERIOD: &waitperiod "10"
