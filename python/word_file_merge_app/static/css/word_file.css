@@ -1,0 +1,274 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Allow full page to scroll */
+}
+
+.header {
+    background-color: #343a40;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    gap: 10px;
+}
+
+.header img {
+    max-height: 2rem;
+    margin-right: 1rem;
+    width: auto; /* Keeps the image aspect ratio */
+}
+
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    overflow-y: auto; /* Allow page-level scrolling */
+}
+
+/*
+.left-column {
+    width: 15%;
+    background-color: #f1f1f1;
+    padding: 1rem;
+    height: auto;
+    min-height: 100%; /* Ensure it fills the vertical space 
+}
+*/
+.menu {
+    width: 15%;
+    background-color: #f1f1f1;
+    padding: 1rem;
+    border-right: 1px solid #ddd;
+    height: auto;
+    min-height: 100%;
+}
+
+.menu a {
+    display: block;
+    padding: 10px;
+    margin-bottom: 5px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.menu a:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.menu h5 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.middle-column {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.top-section {
+    height: 38rem; /* Fixed height for the top section */
+    overflow: auto; /* Allow scrolling inside the top section */
+    border-bottom: 1px solid #ddd;
+    padding: 1rem;
+}
+
+.bottom-section {
+    /*flex-grow: 1;*/
+    padding: 1rem;
+    background-color: #e9ecef;
+}
+
+.right-column {
+    width: 25%;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    height: auto;
+    min-height: 100%; /* Ensure it fills the vertical space */
+}
+
+.menu-separator {
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Styling for the page-title section */
+.page-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem 1rem 0;
+}
+.page-name {
+    flex-grow: 1;       /* Allow the page name to grow and take available space */
+    text-align: left;   /* Align the pagename to the left */
+}
+
+.div-container-button{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;                       /* Space between buttons */
+    height: 2em;
+    font-size: 1.2rem;
+}
+
+
+/* Styling for the selection table */
+.div-table-container{
+    width: 100%;
+    overflow-y: auto;
+    font-size: 1.2rem;
+}
+
+#itemsTable{
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+#itemsTable th, #itemsTable td {
+    padding: 4px 4px;
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: text-top;
+}
+
+.icon-column {
+    max-width: 3rem;    /* set max-width for the first column */
+    width: 3rem;        /* ensure consistent width */
+    text-align: center;
+}
+
+.group-name-column {
+    min-width: 10rem;    /* set min-width for the second column */
+    width: 12rem;        /* ensure consistent width */
+}
+
+.description-column {
+    width: auto;        /* use remaining space for the third column */
+    overflow-wrap: break-word;
+}
+
+.move-to-top-icon{
+    width: 1.1rem;
+    cursor: pointer;
+}
+
+.edit-icon{
+    width: 1.0rem;
+    cursor: pointer;
+}
+
+.save-icon{
+    width: 1.0rem;
+    cursor: pointer;
+}
+.delete-icon{
+    width: 1.0rem;
+    cursor: pointer;
+}
+
+/* .form-container {
+    width: 80%;
+    max-width: 40rem;
+    margin: 0.2rem 0rem;
+    padding: 0.2rem 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 0.8rem;
+}
+
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.wide-input {
+    width: 70%;
+    max-width: 30rem;
+} */
+
+
+/* Styling the form container */
+.form-container {
+    width: 95%;  
+    max-width: 48rem;
+    margin: 0.2rem 0;  
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Flexbox row for each label and input */
+.form-group {
+    display: flex;
+    align-items: center;  /* Vertical alignment */
+    margin-bottom: 0.2rem;
+}
+
+/* Label styling */
+.form-label {
+    width: 150px;  /* Fixed width for consistent alignment */
+    text-align: left;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+/* Input styling */
+.wide-input {
+    flex: 1;  /* Allow the input to grow and take available space */
+    padding: 10px;
+    font-size: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0rem;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #ddfde7;
+    font-weight: bold;
+}
+
+.item-row {
+    cursor: move;
+    background-color: white;
+}
+
+.item-row.selected {
+    background-color: #cce5ff;
+    border-color: #007bff;
+}
+
+.edit-input {
+    width: 100%;
+}

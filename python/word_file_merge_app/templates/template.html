@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+                <div>
+                    <h4>Upload a New Template</h4>
+                </div>
+                <div>
+                    <form action="{{ url_for('maintain_file.upload_template') }}" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="file" required>
+                        <button type="submit">Upload</button>
+                    </form>
+                </div>
+{% endblock %}

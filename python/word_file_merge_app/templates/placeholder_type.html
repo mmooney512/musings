@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+                <div>
+                    <h4>Set Placeholder Types for Template</h4>
+                </div>
+                <div>
+                    <form method="POST" action="{{ url_for('maintain_file.update_placeholder_type') }}">
+                        <label for="template_select">Select a Template:</label>
+                        <select id="template_id">
+                            <option value="">-- Select a Template --</option>
+                            {% for template in templates %}
+                                <option value="{{ template.template_id }}" 
+                                    {% if session.get('template_id') == template.template_id|string %}selected{% endif %}>
+                                    {{ template.template_name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    
+                        <div id="placeholders_section">
+                            {% if placeholders %}
+                                <h3>Placeholders</h3>
+                                <table>
+                                    <tr>
+                                        <th>Placeholder Name</th>
+                                        <th>Placeholder Type</th>
+                                    </tr>
+                                {% for placeholder in placeholders %}
+                                    <tr>
+                                        <td>
+                                            <label for="placeholder_{{ placeholder.placeholder_id }}">{{ placeholder.placeholder_name }}</label>
+                                        </td>
+                                        <td>
+                                            <select name="placeholder_{{ placeholder.placeholder_id }}">
+                                                <option value="static" {% if placeholder.placeholder_type == 'static' %}selected{% endif %}>Static</option>
+                                                <option value="inline" {% if placeholder.placeholder_type == 'inline' %}selected{% endif %}>Inline</option>
+                                                <option value="list" {% if placeholder.placeholder_type == 'list' %}selected{% endif %}>List</option>
+                                                <option value="bullet" {% if placeholder.placeholder_type == 'bullet' %}selected{% endif %}>Bullet</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </table>
+                            {% else %}
+                                <p>Please select a template to view and edit placeholders.</p>
+                            {% endif %}
+                        </div>
+                    
+                        <button type="submit">Save Changes</button>
+                    </form>
+                </div>
+{% endblock %}
+{% block scriptfooter %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const templateDropdown = document.getElementById("template_id");
+    
+        if (templateDropdown) {
+            templateDropdown.addEventListener("change", function () {
+                let selectedTemplateId = this.value;
+    
+                if (selectedTemplateId) {
+                    fetch("{{ url_for('maintain_file.set_template_session') }}", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ template_id: selectedTemplateId })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log("Template ID set in session:", selectedTemplateId);
+                            location.reload();  // Reload to update placeholders
+                        } else {
+                            console.error("Failed to set session variable");
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+                }
+            });
+        }
+    });
+</script>
+<script>
+    document.getElementById('template_select').addEventListener('change', function() {
+        let selectedTemplate = this.value;
+        if (selectedTemplate) {
+            window.location.href = "{{ url_for('maintain_file.set_placeholder_type') }}?template_id=" + selectedTemplate;
+        }
+    });
+</script>
+{% endblock %}

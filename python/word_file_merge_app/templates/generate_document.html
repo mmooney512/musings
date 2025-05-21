@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+        <div>
+            <h4>Word Document Generator</h4>
+        </div>
+        <div>
+            <h5>Generated Files</h5>
+            <div class="div-container-button">
+            {% if word_file_generated %}
+                <button class="btn btn-primary" type="submit" id="downloadButtonWord" onclick="downloadAndFlash()">Download Word Document (.docx)</button>
+            {% else %}
+                <p>hmmmm?</p>
+            {% endif %}
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block scriptfooter %}
+    <script>
+        function downloadAndFlash() {
+            // Start file download in hidden iframe so page doesn’t reload
+            const iframe = document.createElement("iframe");
+            iframe.style.display = "none";
+            iframe.src = "{{ url_for('generate_file.download_word_document') }}";
+            document.body.appendChild(iframe);
+
+            // Show flash message
+            fetch("{{ url_for('generate_file.flash_download_message') }}", { method: "POST" })
+                .then(() => {
+                    window.location.reload();  // So Flask flash appears
+                });
+        }
+</script>
+{% endblock %}

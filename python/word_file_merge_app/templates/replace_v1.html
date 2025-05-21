@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Replacing Placeholder {{ index + 1 }} of {{ total }}</h3>
+
+    <p>Replacing: <strong>{{ placeholder.placeholder_name }}</strong></p>
+
+    {% if placeholder.placeholder_type == "inline" %}
+        <form method="POST">
+            <label>Select or Enter Replacement Value:</label>
+            <select name="replacement_value">
+                {% for value in existing_replacements %}
+                    <option value="{{ value }}">{{ value }}</option>
+                {% endfor %}
+            </select>
+            <input type="text" name="replacement_value" placeholder="Or enter new value">
+            <button type="submit">Next</button>
+        </form>
+
+        {% elif placeholder.placeholder_type in ["list", "bullet"] %}
+        <table id="replacementTable">
+            <tr>
+                <th>Group</th>
+                <th>Value</th>
+                <th>Actions</th>
+            </tr>
+            {% for value in list_values %}
+            <tr>
+                <td>{{ value.group }}</td>
+                <td>{{ value.value }}</td>
+                <td>
+                    <button class="move-up">🔼</button>
+                    <button class="delete-item">❌</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+        <button id="addNewItem">Add Item</button>
+        <button type="submit" id="nextButton">Next</button>
+
+{% endblock %}
+
+{% block scriptfooter %}
+<script>
+    document.querySelectorAll(".move-up").forEach(button => {
+        button.addEventListener("click", function () {
+            let row = this.parentNode.parentNode;
+            if (row.previousElementSibling) {
+                row.parentNode.insertBefore(row, row.previousElementSibling);
+            }
+        });
+    });
+
+    document.querySelectorAll(".delete-item").forEach(button => {
+        button.addEventListener("click", function () {
+            this.parentNode.parentNode.remove();
+        });
+    });
+
+    document.getElementById("addNewItem").addEventListener("click", function () {
+        let table = document.getElementById("replacementTable");
+        let row = table.insertRow(-1);
+        row.innerHTML = `
+            <td><input type="text" name="replacement_group" placeholder="Group"></td>
+            <td><input type="text" name="replacement_value" placeholder="Value"></td>
+            <td>
+                <button class="move-up">🔼</button>
+                <button class="delete-item">❌</button>
+            </td>
+        `;
+    });
+
+    document.getElementById("nextButton").addEventListener("click", function () {
+        let values = [];
+        document.querySelectorAll("#replacementTable tr").forEach((row, index) => {
+            if (index > 0) {
+                let group = row.cells[0].querySelector("input") ? row.cells[0].querySelector("input").value : row.cells[0].innerText;
+                let value = row.cells[1].querySelector("input") ? row.cells[1].querySelector("input").value : row.cells[1].innerText;
+                values.push({ group, value });
+            }
+        });
+
+        fetch("{{ url_for('merge_file.replace_placeholders') }}", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ values })
+        }).then(response => response.json()).then(() => {
+            window.location.reload();
+        });
+    });
+</script>
+{% endblock %}

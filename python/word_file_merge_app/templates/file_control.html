@@ -1,0 +1,22 @@
+<h4>Download Files</h4>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endwith %}
+
+<div class="div-container-button">
+    <ul>
+        {% if session.get('word_file_name') %}
+        <li>Download Word Document (.docx)</li>
+        {% endif %}
+        {% if session.get('pdf_file_name') %}
+        <li>Download PDF Document (.pdf)</li>
+        {% endif %}
+    </ul>
+</div>

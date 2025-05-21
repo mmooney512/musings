@@ -1,0 +1,15 @@
+<div class="form-container">
+        
+    <p>{{ items.replacement_id }}</p>
+    <p>{{ items.replacement_group }}</p>
+    <p>{{ items.replacement_value }}</p>
+
+<br />
+{{ items }}
+<br />
+{% set ctr = namespace(counter=0) %}
+{% for item in items %}
+    <p>item: {{ ctr.counter}} {{ item}} </p>
+    {% set ctr.counter = ctr.counter + 1 %}
+{% endfor %}
+</div>

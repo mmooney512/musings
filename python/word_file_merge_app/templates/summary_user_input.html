@@ -1,0 +1,22 @@
+        <div class="page-title">
+            <div class="page-name">
+                <h4>Summary Information</h4>
+            </div>
+        </div>
+        <div>
+            
+            {% for ph in placeholder_names %}
+                <h5>{{ ph }}</h5>
+                {% if session.get(ph) %}
+                    {% for item in session.get(ph) %}
+                        {% if item.input_type == 'multi' %}
+                            <li>{{ item.item_text }} </li>
+                        {% else %}
+                            <p>{{ item.item_text }} </p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+

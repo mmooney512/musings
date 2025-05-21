@@ -1,0 +1,18 @@
+<div class="form-container">
+    <h4>Add a New Item </h4>
+    <form id="addItemForm">
+        <div class="form-container">
+            <div class="form-group">
+                <label for="groupName" class="form-label">Group Name:</label>
+                <input type="text" id="groupName" name="group_name" class="wide-input" required><br><br>
+            </div>
+            <div class="form-group">
+                <label for="description" class="form-label">Item Description:</label>
+                <input type="text" id="itemText" name="item_text" class="wide-input" required><br><br>
+            </div>
+            <input type="hidden" id="itemType" name="item_type" value="new_items">
+            <input type="hidden" id="placeHolderName" name="placeholder_name" value="{{ placeholder.placeholder_name }}">
+            <button class="btn btn-primary" type="submit">Add Item</button>
+        </div>
+    </form>
+</div>

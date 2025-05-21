@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/word_file.css')}}" type="text/css"/>
+    {% block scripts %}{% endblock %}
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="/static/cl_logo.png" alt="App Logo">
+        <h1 class="h4 mb-0">Word Document Generator</h1>
+    </div>
+
+    <!-- Content Wrapper: Holds all three columns -->
+    <div class="content-wrapper">
+        <!-- Left Column: Menu Navigation -->
+        <nav class="menu">
+            <a href="{{ url_for('base.index') }}">Home</a>
+            <a href="{{ url_for('merge_file.select_template') }}">Select Template</a>
+            <a href="{{ url_for('merge_file.replace_placeholders') }}">Replace Placeholders</a>
+            <a href="{{ url_for('generate_file.generate_document') }}">Create Document</a>
+            
+            <a href="{{ url_for('base.reset') }}">Clear and Reset</a>
+            
+            <h5>Edit</h5>
+            <a href="{{ url_for('maintain_file.upload_template') }}">Upload Template</a>
+            <a href="{{ url_for('maintain_file.set_placeholder_type') }}">Edit Placeholders</a>
+
+        </nav>
+
+        <!-- Middle Column -->
+        <div class="middle-column">
+            <!-- Top Section (Fixed Height, Scrollable) -->
+            <div class="top-section">
+                {% block content %}{% endblock %}
+            </div>
+
+            <!-- Bottom Section (Flexible) -->
+            <div class="bottom-section">
+                {% block bottom %}{% endblock %}
+            </div>
+        </div>
+        <!-- Right Column: Summary Information -->
+        <aside class="right-column">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}"><p>{{ message }}</p></div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block right %}{% endblock %}
+        </aside>
+    </div>
+    {% block scriptfooter %}{% endblock %}
+</body>
+</html>

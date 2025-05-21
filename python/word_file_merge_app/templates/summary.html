@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+    {% block content %}
+    {% include "summary_user_input.html" %}
+    {% endblock %}
+
+    {% block bottom %}
+        {% if request.endpoint == 'merge_file.summary' %}
+        <form id="generateFile" method="POST" action="{{ url_for('generate_file.generate_document') }}">
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="groupName" class="form-label">File Name:</label>
+                    <input type="text" id="outputFileName" name="output_file_name" class="wide-input" value="{{ file_output_string }}" required><br /><br />
+                </div>
+                <div class="div-container-button">
+                    <button class="btn btn-primary" type="submit" id="getFile">Create File</button>
+                </div>
+            </div>
+        </form>
+        {% endif %}
+    {% endblock %}
+
+    {% block right %}
+        &nbsp;
+    {% endblock %}   
+    
+{% block scriptfooter %}
+    &nbsp;
+{% endblock %}   

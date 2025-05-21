@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Select a Template</h3>
+
+{% set selected_template = "" %}
+{% for t in templates %}
+    
+    {% if t.template_id == (template_id|int) %}
+        {% set selected_template = t.template_name %}
+        <p>Selected Template: {{ selected_template }}</p>
+    {% endif %}
+{% endfor %}
+
+<form method="POST" action="{{ url_for('merge_file.select_template') }}">
+    <label for="template_id">Choose a template:</label>
+    <select name="template_id" id="template_id" class="form-control">
+        <option value="" {% if not template_id %}selected{% endif %}>-- Select Template --</option>
+        {% for template in templates %}
+            <option value="{{ template.template_id }}" {% if template.template_id|string == template_id|string %}selected{% endif %}>
+                {{ template.template_name }}
+            </option>
+        {% endfor %}
+    </select>
+    <br>
+    <button type="submit" class="btn btn-primary">Select Template</button>
+</form>
+
+{% endblock %}
+
+{% block scriptfooter %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const templateDropdown = document.getElementById("template_id");
+    
+        if (templateDropdown) {
+            templateDropdown.addEventListener("change", function () {
+                let selectedTemplateId = this.value;
+    
+                if (selectedTemplateId) {
+                    fetch("{{ url_for('maintain_file.set_template_session') }}", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ template_id: selectedTemplateId })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log("Template ID set in session:", selectedTemplateId);
+                            location.reload();  // Reload to update placeholders
+                        } else {
+                            console.error("Failed to set session variable");
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

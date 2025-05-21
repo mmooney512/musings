@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="div-container">
+    <div class="page-title">
+        <h4>Replacing Placeholder {{ index + 1 }} of {{ total_placeholders }}</h4>
+        <p>Replacing: <strong>{{ placeholder.placeholder_name }}</strong></p>
+    </div>
+
+    <div class="div-container-button">
+    {% if index > 0 %}
+        <form id="priorPage" action="{{ url_for('merge_file.previous_step') }}" method="POST">
+            <input type="hidden" name="placeholder_name" value="{{ placeholder.placeholder_name }}">
+            <button class="btn btn-primary" type="submit">Previous</button>
+        </form>
+    {% endif %}
+        <form id="pageNavigator" method="POST" action="{{ url_for('merge_file.set_replacement') }}">
+            <input type="hidden" name="placeholder_name" value="{{ placeholder.placeholder_name }}">        
+            <button class="btn btn-primary" type="submit">Next</button>
+    </div>
+
+        <div class="form-container">
+            <div class="form-select">
+                <label>Select or Enter Replacement Value:</label>
+                <select id="{{ placeholder.placeholder_name }}" name="replacement_value_select" class="form-control">
+                    {% for item in items %}
+                        <option value="{{ item['replacement_value'] }}">{{ item['replacement_value'] }}</option>
+                    {% endfor %}
+                </select>
+                <br />
+                <input type="text" name="replacement_value_input" placeholder="Or enter new value" class="form-control">
+            </div>
+        </div>
+    </form>
+    
+</div>
+
+{% endblock %}
+
+{% block right %}
+    <!-- Include the right side summary.html fragment -->
+    {% include "summary_user_input.html" %}
+{% endblock %}
