@@ -8,7 +8,7 @@ class DocumentStyle(Enum):
     TEMPLATE_NAME           = 'word_documents/cl_template.docx'
     OUTPUT_DIRECTORY_WORD   = 'download'
     OUTPUT_DIRECTORY_PDF    = 'download'
-    OUTPUT_FILE_NAME        = '_Michael_Mooney_CL_'
+    OUTPUT_FILE_NAME        = '_FileName_'
     OUTPUT_FILE_PREFIX      = 'output_prefix'
     OUTPUT_FILE_USE_PLACEHOLDER_VALUE   = True
     OUTPUT_FILE_PLACEHOLDER_TO_USE      = 'Company Name'
