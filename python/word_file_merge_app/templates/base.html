@@ -11,43 +11,47 @@
     {% block scripts %}{% endblock %}
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
+    <div class="page-header">
         <img src="/static/cl_logo.png" alt="App Logo">
         <h1 class="h4 mb-0">Word Document Generator</h1>
     </div>
 
-    <!-- Content Wrapper: Holds all three columns -->
-    <div class="content-wrapper">
-        <!-- Left Column: Menu Navigation -->
-        <nav class="menu">
-            <a href="{{ url_for('base.index') }}">Home</a>
-            <a href="{{ url_for('merge_file.select_template') }}">Select Template</a>
-            <a href="{{ url_for('merge_file.replace_placeholders') }}">Replace Placeholders</a>
-            <a href="{{ url_for('generate_file.generate_document') }}">Create Document</a>
-            
-            <a href="{{ url_for('base.reset') }}">Clear and Reset</a>
-            
-            <h5>Edit</h5>
-            <a href="{{ url_for('maintain_file.upload_template') }}">Upload Template</a>
-            <a href="{{ url_for('maintain_file.set_placeholder_type') }}">Edit Placeholders</a>
-
-        </nav>
-
-        <!-- Middle Column -->
-        <div class="middle-column">
-            <!-- Top Section (Fixed Height, Scrollable) -->
-            <div class="top-section">
-                {% block content %}{% endblock %}
-            </div>
-
-            <!-- Bottom Section (Flexible) -->
-            <div class="bottom-section">
-                {% block bottom %}{% endblock %}
+    <div class="page-content">
+        <div class="left-column">
+            <div class="menu">
+                <!-- Left Column: Menu Navigation -->
+                <nav class="menu">
+                    <a href="{{ url_for('base.index') }}">Home</a>
+                    <a href="{{ url_for('merge_file.select_template') }}">Select Template</a>
+                    <a href="{{ url_for('merge_file.replace_placeholders') }}">Replace Placeholders</a>
+                    <a href="{{ url_for('generate_file.generate_document') }}">Create Document</a>
+                    
+                    <a href="{{ url_for('base.reset') }}">Clear and Reset</a>
+                    
+                    <h5>Edit</h5>
+                    <a href="{{ url_for('maintain_file.upload_template') }}">Upload Template</a>
+                    <a href="{{ url_for('maintain_file.set_placeholder_type') }}">Edit Placeholders</a>
+                </nav>
             </div>
         </div>
-        <!-- Right Column: Summary Information -->
-        <aside class="right-column">
+
+        <div class="middle-column">
+            <!-- Top Section (Fixed Height, Scrollable) -->
+            <div class="middle-header">
+                {% block middle_header %}{% endblock %}
+            </div>
+            <!-- Middle Section (Fixed Height, Scrollable) -->
+            <div class="middle-content">
+                {% block middle_content %}{% endblock %}
+            </div>
+            <!-- Bottom Section (Flexible) -->
+            <div class="middle-footer">
+                {% block middle_footer %}{% endblock %}
+            </div>
+            
+        </div>
+        <div class="right-column">
+            <!-- Right Column: Flash Messages -->
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
@@ -55,9 +59,12 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
+            <!-- Right Column: Summary Information -->
             {% block right %}{% endblock %}
-        </aside>
+        </div>
+
     </div>
+
     {% block scriptfooter %}{% endblock %}
 </body>
 </html>

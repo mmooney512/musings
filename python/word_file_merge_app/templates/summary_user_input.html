@@ -1,10 +1,12 @@
-        <div class="page-title">
-            <div class="page-name">
+        {% if request.endpoint != 'merge_file.summary' %}
+        <div class="summary-title">
+            <div class="page-summary">
                 <h4>Summary Information</h4>
             </div>
         </div>
-        <div>
-            
+        {% endif %}
+
+        <div>    
             {% for ph in placeholder_names %}
                 <h5>{{ ph }}</h5>
                 {% if session.get(ph) %}

@@ -1,10 +1,19 @@
 {% extends "base.html" %}
 
-    {% block content %}
+    {% block middle_header %}
+        <div class="middle-header-left">
+            <h4>Summary Information</h4>
+        </div>
+        <div class="middle-header-right">
+            &nbsp;
+        </div>
+    {% endblock %}
+
+    {% block middle_content %}
     {% include "summary_user_input.html" %}
     {% endblock %}
 
-    {% block bottom %}
+    {% block middle_footer %}
         {% if request.endpoint == 'merge_file.summary' %}
         <form id="generateFile" method="POST" action="{{ url_for('generate_file.generate_document') }}">
             <div class="form-container">

@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
-{% block content %}
-                <div>
-                    <h4>Set Placeholder Types for Template</h4>
-                </div>
+{% block middle_header %}
+    <div class="middle-header-left">
+        <h4>Set Placeholder Types for Template</h4>
+    </div>
+    <div class="middle-header-right">
+        &nbsp;
+    </div>
+{% endblock %}
+
+
+{% block middle_content %}
                 <div>
                     <form method="POST" action="{{ url_for('maintain_file.update_placeholder_type') }}">
                         <label for="template_select">Select a Template:</label>

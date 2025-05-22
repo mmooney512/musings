@@ -7,27 +7,12 @@
     <script src="{{url_for('static', filename='scripts/item_tables.js')}}"></script>
 {% endblock %}
 
-{% block content %}
-<div class="div-container">
-    <div class="page-title">
-        <h4>Replacing Placeholder {{ index + 1 }} of {{ total_placeholders }}</h4>
-        <p>Replacing: <strong>{{ placeholder.placeholder_name }}</strong></p>
-    </div>
-    <div class="div-container-button">
-    {% if index > 0 %}
-        <form id="priorPage" action="{{ url_for('merge_file.previous_step') }}" method="POST">
-            <input type="hidden" name="placeholder_name" value="{{ placeholder.placeholder_name }}">
-            <button class="btn btn-primary" type="submit">Previous</button>
-        </form>
-    {% endif %}
-        <form id="reorderForm" method="post" action="{{ url_for('merge_file.merge_items')}}">
-            <input type="hidden" id="itemType" name="item_type" value="{{ placeholder.placeholder_name }}">
-            <input type="hidden" id="reorderedItems" name="reorderedItems">
-            <button class="btn btn-primary" type="submit" id="submitReorderedItems">Next</button>
-        </form>
-    </div>
-
-    <div class="div-table-container">
+    {% block middle_header %}
+    <!-- Include the placeholder_header.html fragment -->
+    {% include "placeholder_header.html" %}
+    {% endblock %}
+    
+    {% block middle_content %}
         <table id="itemsTable">
             <thead>
                 <tr>
@@ -51,19 +36,16 @@
                 {% endfor %}
             </tbody>
         </table>
-    </div>
+    {% endblock %}
 
-</div>
+{% block middle_footer %}
+    <!-- Include the replace_add_item.html fragment -->
+    {% include "replace_add_item.html" %}
 {% endblock %}
 
 {% block right %}
     <!-- Include the right side summary.html fragment -->
     {% include "summary_user_input.html" %}
-{% endblock %}
-
-{% block bottom %}
-    <!-- Include the replace_add_item.html fragment -->
-    {% include "replace_add_item.html" %}
 {% endblock %}
 
 

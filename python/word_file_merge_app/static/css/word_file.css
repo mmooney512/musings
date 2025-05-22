@@ -1,58 +1,58 @@
-body {
+html, body {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto; /* Allow full page to scroll */
 }
 
-.header {
-    background-color: #343a40;
-    color: white;
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-header{
     display: flex;
     align-items: center;
     padding: 10px 20px;
     font-size: 1.5rem;
     font-weight: bold;
     gap: 10px;
+    background-color: #343a40;
+    color: white;
 }
 
-.header img {
+.page-header img {
     max-height: 2rem;
     margin-right: 1rem;
     width: auto; /* Keeps the image aspect ratio */
 }
 
-.content-wrapper {
-    flex: 1;
+.page-content {
     display: flex;
-    overflow-y: auto; /* Allow page-level scrolling */
+    flex: 1;
+    min-height: 0;
 }
 
-/*
+/* LEFT COLUMN */
 .left-column {
     width: 15%;
-    background-color: #f1f1f1;
-    padding: 1rem;
-    height: auto;
-    min-height: 100%; /* Ensure it fills the vertical space 
-}
-*/
-.menu {
-    width: 15%;
-    background-color: #f1f1f1;
-    padding: 1rem;
+    padding: 1rem 0.3rem;
     border-right: 1px solid #ddd;
     height: auto;
     min-height: 100%;
+    background-color: #f1f1f1;
+}
+
+/* css for the left side menu */
+.menu{
+
+    font-size: 0.9rem;
 }
 
 .menu a {
     display: block;
     padding: 10px;
     margin-bottom: 5px;
-    color: #333;
-    text-decoration: none;
     border-radius: 4px;
+    text-decoration: none;
+    color: #333;
 }
 
 .menu a:hover {
@@ -63,38 +63,10 @@ body {
 .menu h5 {
     margin-top: 20px;
     margin-bottom: 10px;
-    font-weight: bold;
-    color: #555;
     border-bottom: 1px solid #ddd;
     padding-bottom: 5px;
-}
-
-.middle-column {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-}
-
-.top-section {
-    height: 38rem; /* Fixed height for the top section */
-    overflow: auto; /* Allow scrolling inside the top section */
-    border-bottom: 1px solid #ddd;
-    padding: 1rem;
-}
-
-.bottom-section {
-    /*flex-grow: 1;*/
-    padding: 1rem;
-    background-color: #e9ecef;
-}
-
-.right-column {
-    width: 25%;
-    padding: 1rem;
-    background-color: #f8f9fa;
-    height: auto;
-    min-height: 100%; /* Ensure it fills the vertical space */
+    color: #555;
+    font-weight: bold;
 }
 
 .menu-separator {
@@ -103,39 +75,139 @@ body {
     margin-bottom: 0.5rem;
 }
 
-/* Styling for the page-title section */
-.page-title {
+/* MIDDLE COLUMN */
+.middle-column {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.middle-header {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem 0.25rem 1rem;
+}
+
+.middle-header-left{
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.middle-header-left h4 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.middle-header-left p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+
+.middle-header-right{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1rem 1rem 0;
-}
-.page-name {
-    flex-grow: 1;       /* Allow the page name to grow and take available space */
-    text-align: left;   /* Align the pagename to the left */
+    gap: 0.5rem;
 }
 
-.div-container-button{
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;                       /* Space between buttons */
-    height: 2em;
-    font-size: 1.2rem;
-}
-
-
-/* Styling for the selection table */
-.div-table-container{
-    width: 100%;
+.middle-content {
+    flex-shrink: 0;
+    height: 30rem;
     overflow-y: auto;
-    font-size: 1.2rem;
+    padding: 0.25rem 1rem 0.25rem 1rem;
 }
+
+.middle-footer {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+/* RIGHT COLUMN */
+.right-column {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: 25%;
+    padding: 1rem;
+    background-color: #f8f9fa;
+}
+
+.summary-title{
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    padding: 0rem 1rem 0.5rem 0;
+    background-color:rgb(248, 249, 250)
+}
+.page-summary{
+    flex-grow: 1;
+    text-align: left;
+}
+
+.right-column h5 {
+    font-size: 1.25rem;
+    margin: 0.2rem 0rem 0.3rem 0rem;
+}
+.right-column p {
+    font-size: 0.9rem;
+}
+.right-column li {
+    font-size: 0.9rem;
+}
+
+/* TABLE */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0rem;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #ddfde7;
+    font-weight: bold;
+}
+
+.item-row {
+    cursor: move;
+    background-color: white;
+}
+
+.item-row.selected {
+    background-color: #cce5ff;
+    border-color: #007bff;
+}
+
+.edit-input {
+    width: 100%;
+}
+
 
 #itemsTable{
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
 }
+
+#itemsTable thead th{
+    position: sticky;
+    top: -5px;
+    z-index: 1;
+    background: rgb(221,253,231);
+    padding: 0.2rem 0rem;
+}
+
 #itemsTable th, #itemsTable td {
     padding: 4px 4px;
     border: 1px solid #ddd;
@@ -159,6 +231,7 @@ body {
     overflow-wrap: break-word;
 }
 
+/* TABLE ICONS COLUMN */
 .move-to-top-icon{
     width: 1.1rem;
     cursor: pointer;
@@ -177,29 +250,6 @@ body {
     width: 1.0rem;
     cursor: pointer;
 }
-
-/* .form-container {
-    width: 80%;
-    max-width: 40rem;
-    margin: 0.2rem 0rem;
-    padding: 0.2rem 1rem;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size: 0.8rem;
-}
-
-
-.form-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2px;
-}
-
-.wide-input {
-    width: 70%;
-    max-width: 30rem;
-} */
 
 
 /* Styling the form container */
@@ -237,38 +287,4 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-}
-
-
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0rem;
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background-color: #ddfde7;
-    font-weight: bold;
-}
-
-.item-row {
-    cursor: move;
-    background-color: white;
-}
-
-.item-row.selected {
-    background-color: #cce5ff;
-    border-color: #007bff;
-}
-
-.edit-input {
-    width: 100%;
 }

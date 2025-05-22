@@ -1,0 +1,17 @@
+    <div class="middle-header-left">
+        <h4>Replacing Placeholder {{ index + 1 }} of {{ total_placeholders }}</h4>
+        <p>Replacing: <strong>{{ placeholder.placeholder_name }}</strong></p>
+    </div>
+    <div class="middle-header-right">
+        {% if index > 0 %}
+            <form id="priorPage" action="{{ url_for('merge_file.previous_step') }}" method="POST">
+                <input type="hidden" name="placeholder_name" value="{{ placeholder.placeholder_name }}">
+                <button class="btn btn-primary" type="submit">Previous</button>
+            </form>
+        {% endif %}
+            <form id="nextPage" method="post" action="{{ url_for('merge_file.merge_items')}}">
+                <input type="hidden" id="itemType" name="item_type" value="{{ placeholder.placeholder_name }}">
+                <input type="hidden" id="reorderedItems" name="reorderedItems">
+                <button class="btn btn-primary" type="submit" id="submitReorderedItems">Next</button>
+            </form>
+    </div>
